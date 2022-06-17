@@ -1,0 +1,58 @@
+title Diagrama de Sequência -> Super-Usuário ->CRUD Disciplinas
+
+actor Super-Usuário
+
+participant Docente
+
+participant Discente
+
+participant Monitor
+
+
+participant CRUD Disciplinas
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+activate CRUD Disciplinas
+Super-Usuário->CRUD Disciplinas:Escolher intenção: Criar, visualizar, editar ou excluir alguma disciplina()
+
+activate Componente de Negócio
+CRUD Disciplinas->Componente de Negócio:Valida se a disciplina existe ou não()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se a disciplina existe ou não no banco de dados()
+
+Componente de Negócio<--Banco de Dados: Disciplina existe ou não existe()
+
+deactivate Banco de Dados
+
+CRUD Disciplinas<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+CRUD Disciplinas->Componente de Negócio:Cria, visualiza, edita ou exclui alguma disciplina()
+
+activate Banco de Dados
+
+Componente de Negócio->Banco de Dados:O banco de dados é modificado de acordo com a escolha()
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+CRUD Disciplinas<--Componente de Negócio:
+
+deactivate Componente de Negócio
+Super-Usuário<--CRUD Disciplinas:
+
+deactivate CRUD Disciplinas
+
+
+
+

@@ -1,0 +1,63 @@
+title Diagrama de Sequência -> Monitor ->Acessar Histórico de Atendimento e Monitorias
+
+actor Monitor
+
+
+
+
+
+
+participant Acessar Histórico de Atendimento e Monitorias
+
+
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+
+activate Acessar Histórico de Atendimento e Monitorias
+
+Monitor->Acessar Histórico de Atendimento e Monitorias:Acessar Histórico de Atendimentos e de Monitorias
+
+activate Componente de Negócio
+Acessar Histórico de Atendimento e Monitorias->Componente de Negócio:Valida se algum atendimento ou monitoria foi realizado()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se algum atendimento ou monitoria foi realizado()
+
+Componente de Negócio<--Banco de Dados: algum atendimento ou monitoria foi realizado()
+
+deactivate Banco de Dados
+
+Acessar Histórico de Atendimento e Monitorias<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Acessar Histórico de Atendimento e Monitorias->Componente de Negócio:Acessa o histórico de atendimentos e monitorias
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados de atendimentos e monitorias que já foram realizados()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Acessar Histórico de Atendimento e Monitorias<--Componente de Negócio:
+
+
+
+deactivate Componente de Negócio
+Monitor<--Acessar Histórico de Atendimento e Monitorias:
+deactivate Acessar Histórico de Atendimento e Monitorias
+
+
+
+
+

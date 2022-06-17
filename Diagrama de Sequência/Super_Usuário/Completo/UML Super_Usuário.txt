@@ -1,0 +1,94 @@
+title Diagrama de Sequência -> Super-Usuário
+
+actor Super-Usuário
+
+participant Docente
+
+participant Discente
+
+participant Monitor
+
+participant CRUD Usuários
+
+participant CRUD Disciplinas
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+activate CRUD Usuários
+Super-Usuário->CRUD Usuários:Escolher intenção: Criar, visualizar, editar ou excluir algum usuário()
+
+activate Componente de Negócio
+CRUD Usuários->Componente de Negócio:Valida se o usuário existe ou não()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se o usuário existe ou não no banco de dados()
+
+Componente de Negócio<--Banco de Dados: Usuário existe ou não existe()
+
+deactivate Banco de Dados
+
+CRUD Usuários<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+CRUD Usuários->Componente de Negócio:Cria, visualiza, edita ou exclui algum usuário()
+
+activate Banco de Dados
+
+Componente de Negócio->Banco de Dados:O banco de dados é modificado de acordo com a escolha()
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+CRUD Usuários<--Componente de Negócio:
+
+deactivate Componente de Negócio
+Monitor<--CRUD Usuários: Resultado da escolha
+Discente<--CRUD Usuários:Resultado da escolha
+Docente<--CRUD Usuários: Resultado da escolha
+Super-Usuário<--CRUD Usuários:
+deactivate CRUD Usuários
+
+activate CRUD Disciplinas
+Super-Usuário->CRUD Disciplinas:Escolher intenção: Criar, visualizar, editar ou excluir alguma disciplina()
+
+activate Componente de Negócio
+CRUD Disciplinas->Componente de Negócio:Valida se a disciplina existe ou não()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se a disciplina existe ou não no banco de dados()
+
+Componente de Negócio<--Banco de Dados: Disciplina existe ou não existe()
+
+deactivate Banco de Dados
+
+CRUD Disciplinas<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+CRUD Disciplinas->Componente de Negócio:Cria, visualiza, edita ou exclui alguma disciplina()
+
+activate Banco de Dados
+
+Componente de Negócio->Banco de Dados:O banco de dados é modificado de acordo com a escolha()
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+CRUD Disciplinas<--Componente de Negócio:
+
+deactivate Componente de Negócio
+Super-Usuário<--CRUD Disciplinas:
+
+deactivate CRUD Disciplinas
+
+
+
+
+
+
+

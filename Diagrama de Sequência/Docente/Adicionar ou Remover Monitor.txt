@@ -1,0 +1,125 @@
+title Diagrama de Sequência -> Docente -> Adicionar ou Remover Monitor
+actor Docente
+
+participant Monitor
+
+
+
+
+
+
+
+participant Adicionar ou Remover Monitor
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+activate Adicionar ou Remover Monitor
+
+Docente->Adicionar ou Remover Monitor: Adicionar ou remover o monitor
+
+activate Componente de Negócio
+Adicionar ou Remover Monitor->Componente de Negócio:Valida se a disciplina possui um monitor()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se a disciplina possui um monitor()
+
+Componente de Negócio<--Banco de Dados:a disciplina possui monitor()
+
+
+
+
+
+
+
+Adicionar ou Remover Monitor<--Componente de Negócio: 
+
+
+space 
+activate Componente de Negócio
+Adicionar ou Remover Monitor->Componente de Negócio:Decide se remove o monitor()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:O banco segue inalterado ou altera se o docente decide remover o monitor()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Adicionar ou Remover Monitor<--Componente de Negócio:
+
+
+
+
+
+deactivate Componente de Negócio
+Monitor<--Adicionar ou Remover Monitor: É removido se o docente decidir
+space 
+
+Componente de Negócio<--Banco de Dados:a disciplina não possui monitor()
+
+deactivate Banco de Dados
+Adicionar ou Remover Monitor<--Componente de Negócio:
+deactivate Componente de Negócio
+Docente<--Adicionar ou Remover Monitor:
+
+activate Componente de Negócio
+Adicionar ou Remover Monitor->Componente de Negócio:Decide se adiciona o monitor()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:O banco segue inalterado ou altera se o docente decide adicionar o monitor()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Adicionar ou Remover Monitor<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+
+
+
+
+Adicionar ou Remover Monitor->Adicionar ou Remover Monitor:Incluir dados do monitor()
+activate Componente de Negócio
+Adicionar ou Remover Monitor->Componente de Negócio:Valida se monitor existe()
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se o monitor existe()
+
+Componente de Negócio<--Banco de Dados: o monitor existe
+
+deactivate Banco de Dados
+Adicionar ou Remover Monitor<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Adicionar ou Remover Monitor->Componente de Negócio:Grava dados do monitor()
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Insere dados do monitor no banco de dados()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+Adicionar ou Remover Monitor<--Componente de Negócio:
+Monitor<--Adicionar ou Remover Monitor: É adicionado se o docente decidir
+
+
+deactivate Componente de Negócio
+Docente<--Adicionar ou Remover Monitor:
+deactivate Adicionar ou Remover Monitor
+
+
+
+
+
+
+

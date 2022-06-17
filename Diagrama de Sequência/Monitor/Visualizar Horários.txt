@@ -1,0 +1,62 @@
+title Diagrama de Sequência -> Monitor ->Visualizar Horários
+
+actor Monitor
+
+
+
+
+
+
+
+
+
+participant Visualizar Horários
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+activate Visualizar Horários
+
+Monitor->Visualizar Horários:Visualizar os Horários de Monitoria
+
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Valida se os horários de monitorias foram cadastrados()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se os horários de monitorias foram cadastrados()
+
+Componente de Negócio<--Banco de Dados:os horários de monitorias foram cadastrados()
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Acessa os horários de monitorias
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona os horários de monitorias que foram cadastrados pelo docente()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Monitor<--Visualizar Horários:
+deactivate Visualizar Horários
+
+
+
+
+
+

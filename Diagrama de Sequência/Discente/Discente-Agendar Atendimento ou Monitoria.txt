@@ -1,0 +1,64 @@
+title Diagrama de Sequência -> Discente - Agendar Atendimento ou Monitoria
+
+actor Discente
+participant Docente
+
+participant Discente
+
+participant Monitor
+
+participant Agendar Atendimento ou Monitoria
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+activate Agendar Atendimento ou Monitoria
+Discente->Agendar Atendimento ou Monitoria:Escolher a disciplina e marcar o atendimento ou monitoria()
+
+activate Componente de Negócio
+Agendar Atendimento ou Monitoria->Componente de Negócio:Buscar atendimento ou monitoria por categoria(Período, Professor e Disciplina()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Buscar no monitoria no banco()
+
+Componente de Negócio<--Banco de Dados:Retornar disponibilidade()
+
+deactivate Banco de Dados
+
+
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+
+activate Componente de Negócio
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+
+
+Agendar Atendimento ou Monitoria->Componente de Negócio:Marca o atendimento ou monitoria presentes na tabela()
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Agendar atendimento de monitoria
+Componente de Negócio<--Banco de Dados:Retornar agendamento da monitoria()
+deactivateafter Banco de Dados
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+
+Monitor<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Docente<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Discente<--Agendar Atendimento ou Monitoria:
+deactivate Agendar Atendimento ou Monitoria
+
+
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados

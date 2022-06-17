@@ -1,0 +1,243 @@
+title Diagrama de Sequência -> Monitor
+
+actor Monitor
+
+participant Discente
+
+participant Docente
+
+participant Outro Monitor
+
+participant Agendar Atendimento ou Monitoria
+
+participant Desmarcar Atendimento ou Monitoria
+
+participant Acessar Histórico de Atendimento e Monitorias
+
+participant Acessar Histórico de Monitorias
+
+participant Marcar Presença
+
+participant Visualizar Horários
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+activate Agendar Atendimento ou Monitoria
+
+Monitor->Agendar Atendimento ou Monitoria:Escolher a disciplina e marcar o atendimento ou monitoria()
+
+activate Componente de Negócio
+Agendar Atendimento ou Monitoria->Componente de Negócio:Valida se o está horário disponível()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se o horário está disponível()
+
+Componente de Negócio<--Banco de Dados: Horário está disponível()
+
+deactivate Banco de Dados
+
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Agendar Atendimento ou Monitoria->Componente de Negócio:Marca o atendimento ou monitoria()
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+Outro Monitor<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Docente<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Monitor<--Agendar Atendimento ou Monitoria:
+deactivate Agendar Atendimento ou Monitoria
+
+activate Desmarcar Atendimento ou Monitoria
+Monitor->Desmarcar Atendimento ou Monitoria:Escolher a disciplina e desmarcar o atendimento ou monitoria()
+
+activate Componente de Negócio
+Desmarcar Atendimento ou Monitoria->Componente de Negócio:Valida se o atendimento foi marcado()
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+Desmarcar Atendimento ou Monitoria<--Componente de Negócio: Atendimento foi marcado()
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Desmarcar Atendimento ou Monitoria->Componente de Negócio: Desmarca o atendimento ou monitoria()
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+Desmarcar Atendimento ou Monitoria<--Componente de Negócio:
+deactivate Componente de Negócio
+Outro Monitor<--Desmarcar Atendimento ou Monitoria:Dados removidos da lista de presença
+
+Docente<--Desmarcar Atendimento ou Monitoria:Dados removidos da lista de presença
+
+Monitor<--Desmarcar Atendimento ou Monitoria:
+
+deactivate Desmarcar Atendimento ou Monitoria
+
+activate Acessar Histórico de Atendimento e Monitorias
+
+Monitor->Acessar Histórico de Atendimento e Monitorias:Acessar Histórico de Atendimentos e de Monitorias
+
+activate Componente de Negócio
+Acessar Histórico de Atendimento e Monitorias->Componente de Negócio:Valida se algum atendimento ou monitoria foi realizado()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se algum atendimento ou monitoria foi realizado()
+
+Componente de Negócio<--Banco de Dados: algum atendimento ou monitoria foi realizado()
+
+deactivate Banco de Dados
+
+Acessar Histórico de Atendimento e Monitorias<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Acessar Histórico de Atendimento e Monitorias->Componente de Negócio:Acessa o histórico de atendimentos e monitorias
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados de atendimentos e monitorias que já foram realizados()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Acessar Histórico de Atendimento e Monitorias<--Componente de Negócio:
+
+
+
+deactivate Componente de Negócio
+Monitor<--Acessar Histórico de Atendimento e Monitorias:
+deactivate Acessar Histórico de Atendimento e Monitorias
+
+activate Acessar Histórico de Monitorias
+
+Monitor->Acessar Histórico de Monitorias:Acessar Histórico de Monitorias
+
+activate Componente de Negócio
+Acessar Histórico de Monitorias->Componente de Negócio:Valida se alguma monitoria foi realizada()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se alguma monitoria foi realizada()
+
+Componente de Negócio<--Banco de Dados:alguma monitoria foi realizado()
+
+deactivate Banco de Dados
+
+Acessar Histórico de Monitorias<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Acessar Histórico de Monitorias->Componente de Negócio:Acessa o histórico de monitorias realizadas
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados de monitorias que já foram realizadas()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Acessar Histórico de Monitorias<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Monitor<--Acessar Histórico de Monitorias:
+deactivate Acessar Histórico de Monitorias
+
+activate Marcar Presença
+
+Monitor->Marcar Presença: Acessar lista de discentes
+
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Valida se a lista não está vazia()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se a lista está vazia()
+
+Componente de Negócio<--Banco de Dados:a lista não está vazia()
+
+deactivate Banco de Dados
+
+Marcar Presença<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Acessa a lista de discentes
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados dos alunos inscritos na lista()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Marcar Presença<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Monitor<--Marcar Presença:
+
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Marcar presença ou ausência para um discente 
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Atualiza a lista, registrando a presença ou ausência do discente()
+Componente de Negócio<--Banco de Dados:
+deactivate Banco de Dados
+Marcar Presença<--Componente de Negócio:
+deactivate Componente de Negócio
+Monitor<--Marcar Presença:
+deactivate Marcar Presença
+
+activate Visualizar Horários
+
+Monitor->Visualizar Horários:Visualizar os Horários de Monitoria
+
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Valida se os horários de monitorias foram cadastrados()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se os horários de monitorias foram cadastrados()
+
+Componente de Negócio<--Banco de Dados:os horários de monitorias foram cadastrados()
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Acessa os horários de monitorias
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona os horários de monitorias que foram cadastrados pelo docente()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Monitor<--Visualizar Horários:
+deactivate Visualizar Horários

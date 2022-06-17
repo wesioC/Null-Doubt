@@ -1,0 +1,58 @@
+title Diagrama de Sequência -> Monitor ->Agendar Atendimento ou Monitoria
+
+actor Monitor
+
+
+participant Docente
+
+participant Outro Monitor
+
+participant Agendar Atendimento ou Monitoria
+
+
+
+
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+activate Agendar Atendimento ou Monitoria
+
+Monitor->Agendar Atendimento ou Monitoria:Escolher a disciplina e marcar o atendimento ou monitoria()
+
+activate Componente de Negócio
+Agendar Atendimento ou Monitoria->Componente de Negócio:Valida se o está horário disponível()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se o horário está disponível()
+
+Componente de Negócio<--Banco de Dados: Horário está disponível()
+
+deactivate Banco de Dados
+
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Agendar Atendimento ou Monitoria->Componente de Negócio:Marca o atendimento ou monitoria()
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+Agendar Atendimento ou Monitoria<--Componente de Negócio:
+
+deactivate Componente de Negócio
+Outro Monitor<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Docente<--Agendar Atendimento ou Monitoria:Dados adicionados á lista de presença
+Monitor<--Agendar Atendimento ou Monitoria:
+deactivate Agendar Atendimento ou Monitoria
+
+
+
+
+

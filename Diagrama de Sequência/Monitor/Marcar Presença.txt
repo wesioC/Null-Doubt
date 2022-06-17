@@ -1,0 +1,75 @@
+title Diagrama de Sequência -> Monitor ->Marcar Presença
+
+actor Monitor
+
+participant Discente
+
+
+
+
+
+
+
+participant Marcar Presença
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+activate Marcar Presença
+
+Monitor->Marcar Presença: Acessar lista de discentes
+
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Valida se a lista não está vazia()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se a lista está vazia()
+
+Componente de Negócio<--Banco de Dados:a lista não está vazia()
+
+deactivate Banco de Dados
+
+Marcar Presença<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Acessa a lista de discentes
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados dos alunos inscritos na lista()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Marcar Presença<--Componente de Negócio:
+
+
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Marcar Presença->Componente de Negócio:Marcar presença ou ausência para um discente 
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Atualiza a lista, registrando a presença ou ausência do discente()
+Componente de Negócio<--Banco de Dados:
+deactivate Banco de Dados
+Marcar Presença<--Componente de Negócio:
+deactivate Componente de Negócio
+Discente<--Marcar Presença: Registra a presença
+Monitor<--Marcar Presença:
+deactivate Marcar Presença
+
+
+
+
+
+
+

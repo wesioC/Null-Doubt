@@ -1,0 +1,51 @@
+title Diagrama de Sequência -> Docente ->Visualizar Horários
+
+actor Docente
+
+participant Visualizar Horários
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+activate Visualizar Horários
+
+Docente->Visualizar Horários:Visualizar os Horários de Atendimento
+
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Valida se os horários de atendimento foram cadastrados()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se os horários de atendimento foram cadastrados()
+
+Componente de Negócio<--Banco de Dados:os horários de atendimento foram cadastrados()
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Visualizar Horários->Componente de Negócio:Acessa os horários de atendimento
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona os horários de atendimento registrados()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Visualizar Horários<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Docente<--Visualizar Horários:
+deactivate Visualizar Horários
+
+
+
+
+
+

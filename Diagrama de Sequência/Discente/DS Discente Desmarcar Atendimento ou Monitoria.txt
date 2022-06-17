@@ -1,0 +1,58 @@
+title Diagrama de Sequência -> Discente Desmarcar Atendimento ou Monitoria
+
+actor Discente
+participant Docente
+
+participant Discente
+
+participant Monitor
+
+
+participant Desmarcar Atendimento ou Monitoria
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+space 
+
+
+activate Desmarcar Atendimento ou Monitoria
+Discente->Desmarcar Atendimento ou Monitoria:Escolher a disciplina e desmarcar o atendimento ou monitoria()
+
+activate Componente de Negócio
+Desmarcar Atendimento ou Monitoria->Componente de Negócio:Valida se o atendimento foi marcado()
+
+//activate Banco de Dados
+
+
+//deactivate Banco de Dados
+
+Desmarcar Atendimento ou Monitoria<--Componente de Negócio: Atendimento foi marcado()
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Desmarcar Atendimento ou Monitoria->Componente de Negócio: Desmarca o atendimento ou monitoria()
+
+activate Banco de Dados
+
+Componente de Negócio->Banco de Dados: Altera a lista de presença()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Desmarcar Atendimento ou Monitoria<--Componente de Negócio:
+deactivate Componente de Negócio
+Monitor<--Desmarcar Atendimento ou Monitoria:Dados removidos da lista de presença
+
+Docente<--Desmarcar Atendimento ou Monitoria:Dados removidos da lista de presença
+
+
+
+
+

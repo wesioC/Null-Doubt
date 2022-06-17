@@ -1,0 +1,61 @@
+title Diagrama de Sequência -> Monitor ->Acessar Histórico de Monitorias
+
+actor Monitor
+
+
+
+
+
+
+
+participant Acessar Histórico de Monitorias
+
+
+
+participant Componente de Negócio
+
+database Banco de Dados
+
+
+
+
+
+activate Acessar Histórico de Monitorias
+
+Monitor->Acessar Histórico de Monitorias:Acessar Histórico de Monitorias
+
+activate Componente de Negócio
+  Acessar Histórico de Monitorias->Componente de Negócio:Validar se alguma monitoria foi realizada()
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Checa se alguma monitoria foi realizada()
+
+Componente de Negócio<--Banco de Dados:alguma monitoria foi realizado()
+
+deactivate Banco de Dados
+
+Acessar Histórico de Monitorias<--Componente de Negócio: 
+
+deactivate Componente de Negócio
+space 
+activate Componente de Negócio
+Acessar Histórico de Monitorias->Componente de Negócio:Acessa o histórico de monitorias realizadas
+
+activate Banco de Dados
+Componente de Negócio->Banco de Dados:Seleciona dados de monitorias que já foram realizadas()
+
+Componente de Negócio<--Banco de Dados:
+
+deactivate Banco de Dados
+
+Acessar Histórico de Monitorias<--Componente de Negócio:
+
+
+deactivate Componente de Negócio
+Monitor<--Acessar Histórico de Monitorias:
+deactivate Acessar Histórico de Monitorias
+
+
+
+
+
